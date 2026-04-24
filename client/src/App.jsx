@@ -1,128 +1,76 @@
-import { useState } from "react";
-import "./style.css";
+import { useState, useCallback } from "react";
+import Sidebar from "./components/Sidebar";
+import Chat from "./pages/Chat";
+import Generator from "./pages/Generator";
+import Reviewer from "./pages/Reviewer";
+import "./App.css";
 
 function App() {
 
-  const [code, setCode] = useState("");
-  const [review, setReview] = useState("");
-  const [status, setStatus] = useState("Waiting for code...");
-  const [loading, setLoading] = useState(false);
+  const [activePage, setActivePage] = useState("chat");
+  const [activeChatId, setActiveChatId] = useState(null);
+  const [activeReviewId, setActiveReviewId] = useState(null);
+  const [activeGenerationId, setActiveGenerationId] = useState(null);
+  const [refreshKey, setRefreshKey] = useState(0);
 
-  const clearCode = () => {
-    setCode("");
-    setReview("");
-  };
+  const refreshChats = useCallback(() => {
+    setRefreshKey(prev => prev + 1);
+  }, []);
 
-  const analyzeCode = async () => {
+  const refreshReviews = useCallback(() => {
+    setRefreshKey(prev => prev + 1);
+  }, []);
 
-    if (!code.trim()) return;
-
-    setReview("");
-    setStatus("Analyzing with Mistral...");
-    setLoading(true);
-
-    try {
-
-      const response = await fetch("http://localhost:3000/api/review", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ code }),
-      });
-
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder();
-
-      while (true) {
-
-        const { done, value } = await reader.read();
-
-        if (done) break;
-
-        const chunk = decoder.decode(value);
-
-        const lines = chunk.split("\n\n");
-
-        for (const line of lines) {
-
-          if (line.startsWith("data: ")) {
-
-            const json = JSON.parse(line.slice(6));
-
-            if (json.response) {
-
-              setReview(prev => prev + json.response);
-            }
-          }
-        }
-      }
-
-      setStatus("Review Complete");
-
-    } catch (error) {
-
-      setStatus("Error: " + error.message);
-
-    }
-
-    setLoading(false);
-  };
-
-
+  const refreshGenerations = useCallback(() => {
+    setRefreshKey(prev => prev + 1);
+  }, []);
 
   return (
+    <div style={{
+      display: "flex",
+      height: "100vh",
+      overflow: "hidden",
+      background: "#080f1a"
+    }}>
 
-    <div className="container">
+      <Sidebar
+        activePage={activePage}
+        setActivePage={setActivePage}
+        activeChatId={activeChatId}
+        setActiveChatId={setActiveChatId}
+        activeReviewId={activeReviewId}
+        setActiveReviewId={setActiveReviewId}
+        activeGenerationId={activeGenerationId}
+        setActiveGenerationId={setActiveGenerationId}
+        refreshKey={refreshKey}
+      />
 
-      <div className="header">
-        <h1> 🤖 Offline Code Reviewer</h1>
-        <p>Powered by Ollama (Mistral)</p>
-      </div>
-
-      <div className="main">
-
-        <div className="card">
-
-          <div className="card-header">
-            <h3>Source Code</h3>
-            <button onClick={clearCode}>Clear</button>
-          </div>
-
-          <textarea
-            value={code}
-            onChange={(e) => setCode(e.target.value)}
-            placeholder="Paste your code here..."
+      <div style={{ flex: 1, overflow: "hidden" }}>
+        {activePage === "chat" && (
+          <Chat
+            activeChatId={activeChatId}
+            setActiveChatId={setActiveChatId}
+            refreshChats={refreshChats}
           />
-
-          <br /><br />
-
-          <button onClick={analyzeCode}>
-            Analyze Code
-          </button>
-
-        </div>
-
-        <div className="card">
-
-          <div className="card-header">
-            <h3>Review Feedback</h3>
-            <span className="status">{status}</span>
-          </div>
-
-          <div className="output">
-            {review || "Review will appear here..."}
-          </div>
-
-        </div>
-
+        )}
+        {activePage === "generator" && (
+          <Generator
+            activeGenerationId={activeGenerationId}
+            setActiveGenerationId={setActiveGenerationId}
+            refreshGenerations={refreshGenerations}
+          />
+        )}
+        {activePage === "reviewer" && (
+          <Reviewer
+            activeReviewId={activeReviewId}
+            setActiveReviewId={setActiveReviewId}
+            refreshReviews={refreshReviews}
+          />
+        )}
       </div>
 
     </div>
-
   );
-
 }
 
 export default App;
-  

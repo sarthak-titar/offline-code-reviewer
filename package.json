@@ -5,19 +5,17 @@
   "main": "main.js",
   "author": "Sarthak",
   "license": "ISC",
-
   "scripts": {
     "start": "electron .",
     "server": "node server.js",
     "build": "electron-builder"
   },
-
   "dependencies": {
+    "better-sqlite3": "^12.9.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "node-fetch": "^3.3.2"
   },
-
   "devDependencies": {
     "electron": "^30.0.0",
     "electron-builder": "^24.13.3"
