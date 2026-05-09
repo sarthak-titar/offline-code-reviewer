@@ -122,7 +122,7 @@ app.post('/api/review', async (req, res) => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'mistral',
+        model: 'Qwen2.5-Coder',
         prompt: `${SYSTEM_PROMPT}\n\n---CODE TO REVIEW---\n${code}`,
         stream: true
       })

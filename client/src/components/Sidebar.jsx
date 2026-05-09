@@ -12,6 +12,7 @@ function Sidebar({
   const [chatOpen, setChatOpen] = useState(true);
   const [reviewerOpen, setReviewerOpen] = useState(true);
   const [generatorOpen, setGeneratorOpen] = useState(true);
+  const [compilerOpen, setCompilerOpen] = useState(true);
   const [chats, setChats] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [generations, setGenerations] = useState([]);
@@ -262,6 +263,22 @@ function Sidebar({
               }
             />
           )}
+        </div>
+
+        <div className="sidebar-divider" />
+
+        {/* ── Compiler Section ── */}
+        <div className="sidebar-section">
+          <SectionBtn
+            page="compiler"
+            icon="▶"
+            label="Compiler"
+            isOpen={compilerOpen}
+            onToggle={() => {
+              setActivePage("compiler");
+              setCompilerOpen(!compilerOpen);
+            }}
+          />
         </div>
 
       </div>

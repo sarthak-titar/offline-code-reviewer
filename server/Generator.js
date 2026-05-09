@@ -120,7 +120,7 @@ app.post("/api/generate", async (req, res) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        model: "mistral",
+        model: "Qwen2.5-Coder",
         prompt: `${SYSTEM_PROMPT}\n\nUser Request:\n${prompt}`,
         stream: true
       })

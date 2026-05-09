@@ -99,7 +99,7 @@ app.post('/api/generate-title', async (req, res) => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'mistral',
+        model: 'Qwen2.5-Coder',
         prompt: `Based on this conversation, give a very short title (max 5 words, no quotes, no punctuation):\n\n${conversationText}\n\nTitle:`,
         stream: false
       })
@@ -143,7 +143,7 @@ app.post('/api/chat', async (req, res) => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'mistral',
+        model: 'Qwen2.5-Coder',
         prompt: `${SYSTEM_PROMPT}\n\n${conversationContext}\nAssistant:`,
         stream: false
       })
@@ -168,7 +168,7 @@ app.post('/api/chat', async (req, res) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          model: 'mistral',
+          model: 'Qwen2.5-Coder',
           prompt: `Based on this conversation, give a very short title (max 5 words, no quotes, no punctuation):\n\n${conversationText}\n\nTitle:`,
           stream: false
         })

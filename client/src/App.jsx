@@ -3,6 +3,7 @@ import Sidebar from "./components/Sidebar";
 import Chat from "./pages/Chat";
 import Generator from "./pages/Generator";
 import Reviewer from "./pages/Reviewer";
+import Compiler from "./pages/Compiler";  // ADD THIS
 import "./App.css";
 
 function App() {
@@ -66,6 +67,9 @@ function App() {
             setActiveReviewId={setActiveReviewId}
             refreshReviews={refreshReviews}
           />
+        )}
+         {activePage === "compiler" && (  // ADD THIS
+          <Compiler />
         )}
       </div>
 
