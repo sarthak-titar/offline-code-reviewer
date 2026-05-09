@@ -3,7 +3,7 @@ const path = require("path");
 const { spawn } = require("child_process");
 
 let mainWindow;
-
+let compilerServer; 
 let reviewServer;
 let generatorServer;
 let chatServer;
@@ -52,6 +52,13 @@ app.whenReady().then(() => {
     stdio: "inherit"
   });
 
+
+  console.log("Starting Compiler Server...");  // ADD THIS
+  compilerServer = spawn("node", ["server/compiler.js"], {  // ADD THIS
+    shell: true,
+    stdio: "inherit"
+  });
+
   console.log("Starting React...");
  // Start React dev server
   reactProcess = spawn("npm", ["run", "dev"], {
@@ -74,7 +81,10 @@ app.on("window-all-closed", () => {
   if (reviewServer) reviewServer.kill();
   if (generatorServer) generatorServer.kill();
   if (chatServer) chatServer.kill();
+  if (compilerServer) compilerServer.kill(); 
   if (reactProcess) reactProcess.kill();
 
   app.quit();
 });
+
+

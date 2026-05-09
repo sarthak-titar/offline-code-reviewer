@@ -1,0 +1,309 @@
+/* ─────── Wrapper ─────── */
+.compiler-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: #080f1a;
+    color: #e1e8ed;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  
+  /* ─────── Top Bar ─────── */
+  .compiler-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    background: #0d1219;
+    border-bottom: 1px solid #1a2332;
+    gap: 20px;
+  }
+  
+  .compiler-topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .compiler-topbar-icon {
+    font-size: 18px;
+  }
+  
+  .compiler-topbar-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #e1e8ed;
+  }
+  
+  .compiler-topbar-sub {
+    font-size: 12px;
+    color: #7f8a98;
+    margin-left: 8px;
+  }
+  
+  .compiler-topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .compiler-time-badge {
+    padding: 4px 12px;
+    background: #1a2332;
+    border: 1px solid #2a3a4a;
+    border-radius: 6px;
+    font-size: 12px;
+    color: #7f8a98;
+  }
+  
+  .compiler-language-select {
+    padding: 6px 12px;
+    background: #0d1219;
+    border: 1px solid #2a3a4a;
+    border-radius: 6px;
+    color: #e1e8ed;
+    cursor: pointer;
+    font-size: 13px;
+  }
+  
+  .compiler-language-select:hover {
+    border-color: #3a4a5a;
+  }
+  
+  /* ─────── Main Content ─────── */
+  .compiler-main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    gap: 1px;
+  }
+  
+  /* ─────── Panels ─────── */
+  .compiler-panel {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+    background: #0d1219;
+  }
+  
+  .compiler-left-panel {
+    border-right: 1px solid #1a2332;
+  }
+  
+  /* ─────── Panel Header ─────── */
+  .compiler-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid #1a2332;
+    background: #080f1a;
+  }
+  
+  .compiler-panel-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #e1e8ed;
+  }
+  
+  .compiler-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+  
+  .compiler-dot-green {
+    background: #10b981;
+  }
+  
+  .compiler-dot-blue {
+    background: #3b82f6;
+  }
+  
+  .compiler-clear-btn,
+  .compiler-error-indicator,
+  .compiler-success-indicator {
+    padding: 4px 8px;
+    font-size: 11px;
+    border: none;
+    background: transparent;
+    color: #7f8a98;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .compiler-error-indicator {
+    color: #ef4444;
+  }
+  
+  .compiler-success-indicator {
+    color: #10b981;
+  }
+  
+  .compiler-clear-btn:hover {
+    background: #1a2332;
+  }
+  
+  /* ─────── Code Input ─────── */
+  .compiler-code-input {
+    flex: 1;
+    padding: 12px 16px;
+    background: #0d1219;
+    border: none;
+    color: #e1e8ed;
+    font-family: "Courier New", monospace;
+    font-size: 13px;
+    resize: none;
+    outline: none;
+  }
+  
+  .compiler-code-input::placeholder {
+    color: #4a5a6a;
+  }
+  
+  /* ─────── Panel Footer ─────── */
+  .compiler-panel-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border-top: 1px solid #1a2332;
+    background: #080f1a;
+  }
+  
+  .compiler-char-count {
+    font-size: 12px;
+    color: #7f8a98;
+  }
+  
+  .compiler-run-btn {
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #10b981, #059669);
+    border: none;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .compiler-run-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  }
+  
+  .compiler-run-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .compiler-btn-loading {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .compiler-btn-loading span {
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    animation: pulse 1.4s infinite;
+  }
+  
+  .compiler-btn-loading span:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  
+  .compiler-btn-loading span:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+  
+  /* ─────── Output Area ─────── */
+  .compiler-output-area {
+    flex: 1;
+    overflow: auto;
+    padding: 12px 16px;
+  }
+  
+  .compiler-output-text {
+    margin: 0;
+    font-family: "Courier New", monospace;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #10b981;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-width: 100%;
+  }
+  
+  .compiler-error-box {
+    padding: 12px 16px;
+    background: #1a0f0f;
+    border-left: 3px solid #ef4444;
+    margin-bottom: 12px;
+  }
+  
+  .compiler-error-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: #ef4444;
+    margin-bottom: 6px;
+  }
+  
+  .compiler-error-box .compiler-output-text {
+    color: #ef4444;
+  }
+  
+  /* ─────── Empty State ─────── */
+  .compiler-empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    gap: 12px;
+    color: #4a5a6a;
+  }
+  
+  .compiler-empty-icon {
+    font-size: 32px;
+    opacity: 0.5;
+  }
+  
+  .compiler-empty p {
+    margin: 0;
+    font-size: 13px;
+  }
+  
+  /* ─────── Scrollbar ─────── */
+  .compiler-code-input::-webkit-scrollbar,
+  .compiler-output-area::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .compiler-code-input::-webkit-scrollbar-track,
+  .compiler-output-area::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .compiler-code-input::-webkit-scrollbar-thumb,
+  .compiler-output-area::-webkit-scrollbar-thumb {
+    background: #2a3a4a;
+    border-radius: 4px;
+  }
+  
+  .compiler-code-input::-webkit-scrollbar-thumb:hover,
+  .compiler-output-area::-webkit-scrollbar-thumb:hover {
+    background: #3a4a5a;
+  }
