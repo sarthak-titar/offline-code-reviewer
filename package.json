@@ -3,16 +3,31 @@
   "version": "1.0.0",
   "description": "Offline Code Reviewer using Electron + Express + Ollama",
   "main": "main.js",
-  "author": "Sarthak",
+  "author": "Sarthak Titar",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sarthak-titar/offline-code-reviewer"
+  },
+  "keywords": [
+    "code-review",
+    "electron",
+    "offline",
+    "ollama",
+    "ai",
+    "desktop"
+  ],
   "scripts": {
     "start": "electron .",
     "server": "node server.js",
-    "build": "electron-builder"
+    "build": "electron-builder",
+    "lint": "cd client && npm run lint",
+    "dev": "npm start"
   },
   "dependencies": {
     "better-sqlite3": "^12.9.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "node-fetch": "^3.3.2"
   },
